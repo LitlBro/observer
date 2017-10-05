@@ -1,4 +1,4 @@
-var stream = require('./dataStreamer.js');
+var stream = require('./configHandler.js');
 var async = require('async');
 
 
