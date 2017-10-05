@@ -1,0 +1,5 @@
+{
+  "site1":{"adress": "stackoverflow.com", "color":"\\x1b[32m", "timer": 1},
+  "site2":{"adress": "google.com", "color":"\\x1b[33m", "timer": 2},
+  "site3":{"adress": "facebook.com", "color":"\\x1b[34m", "timer": 3}
+}
