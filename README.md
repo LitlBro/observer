@@ -23,9 +23,11 @@ example.json :
 website targeted :
   * motherboard.vice.com
   * path (optional) : /en_us/error
+
 container size :
   * 60/3 + 1 (a check every 3 minutes, beginning at 0, so 21 check in a hour)
   * default check interval is 2 minutes => default container size : 31
+
 alert color :
   * while passing threshold : \\x1b[33m
   * default is red
