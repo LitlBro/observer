@@ -13,14 +13,5 @@ for(var key in jsonContent) {
   var color = jsonContent[key].color;
   var timer = jsonContent[key].timer;
   const t = new website(option, color,timer);
-  // t.on("rcv", () => {
-  //   console.log("timer is : " + time + " Is =>" + t.option.host);
-  //   console.log(t.history.getAll());
-  //
-  //   function run() {t.fireRequest()};
-  //   var time = t.clock;
-  //   setTimeout(run, time);
-  // });
-
   t.emit('rcv');
 }

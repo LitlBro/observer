@@ -2,18 +2,15 @@ const http = require('https');
 const EventEmitter = require('events');
 const container = require("./container.js");
 //TODO : compute metrics
-
+//TODO : if not http, try https
  const Website = class extends EventEmitter {
   constructor(opt, color, timer = 2) {
     super();
     this.option = opt; //URL of host, method and other
     this.color = color; //Color display in terminal
-    this.clock = timer*1*1000; //timer (2 or 10min)
-    this.history = new container(10); //an Hour divided by minute interval between check
+    this.clock = timer*60*1000; //timer (2 or 10min)
+    this.history = new container(Math.round(60/timer)); //an Hour divided by minute interval between check
     this.on("rcv", () => {
-      console.log("timer is : " + this.clock + " Is =>" + this.option.host);
-      //console.log(this.history.getAll());
-
       var t =  () => {this.fireRequest()};
       var time = this.clock;
       setTimeout(t, time);
@@ -38,11 +35,9 @@ const container = require("./container.js");
       var to = "request to target : " + opt.host + " at date " + res.headers.date ;
       var from = "returned : " + res.statusCode + " and took = " + delay + " ms"
       console.log("\n\n" + to + "\n" + from);
-
-      console.log(this.history.getSize());
       this.emit('rcv',opt.host);
 
-      //console.log(this.history.pool);
+      console.log("pool : " + this.history.getSize() + "/" + this.history.size + this.history.pool);
 
     }).on('error', err => {
       console.log("ERROR : an error had occured for host" + this.option.host);

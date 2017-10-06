@@ -1,9 +1,8 @@
 {
   "name": "observer",
   "version": "0.0.1",
-  "description": "a node.js ",
+  "description": "a node.js application to monitor website",
   "dependencies": {
-    "async": "^2.5.0",
     "clone": "^2.1.1",
     "request": "^2.81.0"
   }
