@@ -8,7 +8,7 @@ const container = require("./container.js");
     super();
     this.option = opt; //URL of host, method and other
     this.color = color; //Color display in terminal
-    this.clock = timer; //timer (2 or 10min)
+    this.clock = timer*10*1000; //timer (2 or 10min)
     this.history = new container(10); //an Hour divided by minute interval between check
 
 
@@ -31,20 +31,25 @@ const container = require("./container.js");
     var color = this.color;
     var start = new Date();
     http.request(opt, res => {
-
       var delay = new Date() - start;
       this.addRes(res, start, delay);
       var to = "request to target : " + opt.host + " at date " + res.headers.date ;
       var from = "returned : " + res.statusCode + " and took = " + delay + " ms"
       console.log("\n\n" + to + "\n" + from);
-      console.log(this.AvgResponseTime());
+
+      console.log(this.history.getSize());
+      this.emit('rcv',opt.host);
+
+      //console.log(this.history.pool);
+
     }).on('error', err => {
       console.log("ERROR : an error had occured for host" + this.option.host);
       var delay = new Date() - start;
       this.addRes(null, start, delay,err);
+      this.emit('rcv',opt.host);
+
     }).end();
 
-    this.emit('rcv',opt.host);
   }
   AvgResponseTime() {
 

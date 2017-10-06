@@ -14,7 +14,7 @@ function jsonParser(pathToFile) {
       let color = jsonContent[key].color;
       let timer = jsonContent[key].timer;
       let t = new website(option, color,timer);
-      //console.log('test');
+      console.log('test');
       t.on("rcv", (data) => {
         //console.log('pas meme test');
         //console.log("ON EVENT : " + t.history.getAll());
