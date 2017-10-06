@@ -1,11 +1,11 @@
 {
   "0":{
     "option": {
-      "host":"motherboard.vice.com",
+      "host":"motherbereard.vice.com",
       "path":"/en_us/error"
     },
     "color":"\\x1b[33m",
-    "timer": 1
+    "timer": 3
   },
   "1":{
     "option": {
@@ -13,7 +13,7 @@
       "path":"/"
     },
     "color":"\\x1b[33m",
-    "timer": 3
+    "timer": 5
   },
 
   "3":{
@@ -22,7 +22,7 @@
       "path":"/"
     },
     "color":"\\x1b[33m",
-    "timer": 5
+    "timer": 7
   }
 
 

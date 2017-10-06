@@ -8,12 +8,17 @@ const container = require("./container.js");
     super();
     this.option = opt; //URL of host, method and other
     this.color = color; //Color display in terminal
-    this.clock = timer*10*1000; //timer (2 or 10min)
+    this.clock = timer*1*1000; //timer (2 or 10min)
     this.history = new container(10); //an Hour divided by minute interval between check
+    this.on("rcv", () => {
+      console.log("timer is : " + this.clock + " Is =>" + this.option.host);
+      //console.log(this.history.getAll());
 
-
+      var t =  () => {this.fireRequest()};
+      var time = this.clock;
+      setTimeout(t, time);
+    });
   }
-
   addRes(res, start, delay,error=null) {
     this.history.insert({
       "status": (res!=null) ? res.statusCode : "failure",
@@ -23,9 +28,6 @@ const container = require("./container.js");
       "error":error
     });
   }
-
-
-
   fireRequest() {
     var opt = this.option;
     var color = this.color;
