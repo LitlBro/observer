@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
+  "name": "observer",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "a node.js ",
   "dependencies": {
     "async": "^2.5.0",
     "clone": "^2.1.1",
