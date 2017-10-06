@@ -1,0 +1,10 @@
+{
+  "0":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "color":"\\x1b[33m",
+    "timer": 3
+  }
+}

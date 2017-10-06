@@ -1,0 +1,27 @@
+{
+  "0":{
+    "option": {
+      "host":"mothertestd.vice.com",
+      "path":"/en_us/error"
+    },
+    "color":"\\x1b[33m",
+    "timer": 2
+  },
+  "1":{
+    "option": {
+      "host":"gykgjkhjkhbjgle.com",
+      "path":"/"
+    },
+    "color":"\\x1b[33m",
+    "timer": 2
+  },
+
+  "3":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "color":"\\x1b[33m",
+    "timer": 10
+  }
+}
