@@ -33,7 +33,7 @@ function buildParallel(pathToFile) {
       let option = jsonContent[key].option;
       let color = jsonContent[key].color;
       let timer = jsonContent[key].timer;
-      const t = new website(option, color,timer);
+      const t = new website(option,timer, color);
       t.emit('rcv');
     }
   } catch(error) {
