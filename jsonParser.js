@@ -12,9 +12,8 @@ function buildSequential(pathToFile) {
 
     for(var key in jsonContent) {
       let option = jsonContent[key].option;
-      let color = jsonContent[key].color;
       let timer = jsonContent[key].timer;
-      const t = new website(option, color,timer);
+      const t = new website(option,timer);
       t.emit('rcv');
     }
   } catch(error) {
@@ -31,9 +30,8 @@ function buildParallel(pathToFile) {
 
     for(var key in jsonContent) {
       let option = jsonContent[key].option;
-      let color = jsonContent[key].color;
       let timer = jsonContent[key].timer;
-      const t = new website(option,timer, color);
+      const t = new website(option,timer);
       t.emit('rcv');
     }
   } catch(error) {

@@ -4,6 +4,15 @@
       "host":"google.com"
     },
     "type":"https",
-    "timer": 2
+    "timer": 2,
+    "color":"blue"
+  },
+  "1":{
+    "option": {
+      "host":"facebook.com"
+    },
+    "type":"http",
+    "timer": 2,
+    "color":"yellow"
   }
 }

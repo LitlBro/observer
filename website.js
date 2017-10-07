@@ -2,13 +2,10 @@ const http = require('http');
 const https = require('https');
 const EventEmitter = require('events');
 const container = require("./container.js");
-//TODO : compute metrics
-//TODO : if not http, try https
- const Website = class extends EventEmitter {
-  constructor(opt, timer = 2, color = '\x1b[33m', type = 'http') {
+const Website = class extends EventEmitter {
+  constructor(opt, timer = 2, type = 'http') {
     super();
     this.option = opt; //URL of host, method and other
-    this.color = color; //Color display in terminal
     this.clock = timer; //timer (2 or 10min)
     this.history = new container(Math.round(60/timer)+1); //an Hour divided by minute interval between check
     this.getter = (type=='http') ? http : https;
@@ -17,7 +14,7 @@ const container = require("./container.js");
     this.on("tick", () => {
       this.tick = this.tick + 10;
       this.checkTimeFrame();
-      setTimeout(()=>{this.emit('tick')},1*1000)
+      setTimeout(()=>{this.emit('tick')},5*1000)
     });
   }
   checkTimeFrame() {
@@ -32,7 +29,11 @@ const container = require("./container.js");
     }
   }
   displayInfo(data) {
-    console.log(this.AvgResponseTime(data));
+    if(Object.keys(data).length > 0) {
+      console.log("data for host :" + this.option.host);
+      console.log(this.responseTime(data));
+      console.log(this.responseStatus(data));
+    }
   }
   addRes(res, start, delay,error=null) {
     this.history.insert({
@@ -45,18 +46,11 @@ const container = require("./container.js");
   }
   fireRequest() {
     var opt = this.option;
-    var color = this.color;
     var start = new Date();
     this.getter.request(opt, res => {
       var delay = new Date() - start;
       this.addRes(res, start, delay);
-      var to = (this.getter==https) + " request : " + opt.host + " at date " + res.headers.date ;
-      var from = "returned : " + res.statusCode + " and took = " + delay + " ms"
-      console.log(this.color + "\n\n" + to + "\n" + from);
       this.emit('rcv',opt.host);
-
-      console.log("pool : " + this.history.getSize() + "/" + this.history.size);
-
     }).on('error', err => {
       console.log("ERROR : an error had occured for host" + this.option.host);
       var delay = new Date() - start;
@@ -66,31 +60,38 @@ const container = require("./container.js");
     }).end();
 
   }
-  AvgResponseTime(data) {
+  responseTime(data) {
 
-    var validTime = 0;
-    var failedTime = 0;
-    var validRequest = 0;
-    var failedRequest = 0;
+    var avgTime = 0;
+    var nbRequest = 0;
+    var maxTime = 0;
+    var minTime = Number.MAX_VALUE;
+
     data.map(element => {
-      if(element.available) {
-        validRequest++;
-        validTime = validTime + element.delay;
-      }
-      else {
-        failedRequest++;
-        failedTime = failedTime + element.delay;
-      }
-    })
+        nbRequest++;
+        avgTime = avgTime + element.delay;
+        maxTime = (maxTime >= element.delay) ? maxTime : element.delay;
+        minTime = (minTime <= element.delay) ? minTime : element.delay;
+    });
 
-    var validAvg = (validRequest==0) ? "none" : Math.round(validTime/validRequest);
-    var failedAvg = (failedRequest==0) ? "none" : Math.round(failedTime/failedRequest);
-    var Avg = Math.round((validTime+failedTime)/(failedRequest+validRequest));
+    var avg = (nbRequest==0) ? "none" : Math.round(avgTime/nbRequest);
     return {
-      "validAvg":validAvg,
-      "failedAvg":failedAvg,
-      "Avg":Avg
+      "Min":minTime,
+      "Avg":avg,
+      "Max":maxTime
     };
   }
+  responseStatus(data) {
+    var allStatus = {};
+    data.map(element => {
+      if(allStatus[element.status]) {
+        allStatus[element.status] ++;
+      } else {
+        allStatus[element.status] = 1
+      }
+    });
+    return allStatus;
+  }
+
 }
 module.exports = Website;

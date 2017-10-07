@@ -10,10 +10,9 @@ var jsonContent = JSON.parse(content);
 
 for(var key in jsonContent) {
   var option = jsonContent[key].option;
-  var color = jsonContent[key].color;
   var timer = jsonContent[key].timer;
   var type = jsonContent[key].type;
-  const t = new website(option, timer, color,type);
+  const t = new website(option, timer,type);
   t.fireRequest();
   t.emit('tick');
 }
