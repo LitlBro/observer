@@ -2,38 +2,45 @@ var clone = require('clone');
 var website = require('./website.js');
 var fs = require("fs");
 
-var pathToFile = process.argv[2];
-//TODO check if json or file, if json send directly if file, parse it.
-function buildSequential(pathToFile) {
+function buildWebsite(pathToFile) {
+
   try {
+    var fs = require("fs");
     var content = fs.readFileSync(pathToFile);
     var jsonContent = JSON.parse(content);
-
-
-    for(var key in jsonContent) {
-      let option = jsonContent[key].option;
-      let timer = jsonContent[key].timer;
-      const t = new website(option,timer);
-      t.emit('rcv');
-    }
   } catch(error) {
     console.log(error);
     process.exit(1);
+  }
+
+  try {
+    for(var key in jsonContent) {
+      var option = jsonContent[key].option;
+      var timer = jsonContent[key].timer;
+      var type = jsonContent[key].type;
+      const t = new website(option, timer,type);      
+      t.emit('tick');
+    }
+  } catch(error) {
+    console.log(error);
   }
 }
 
 function buildParallel(pathToFile) {
   try {
+    var fs = require("fs");
     var content = fs.readFileSync(pathToFile);
     var jsonContent = JSON.parse(content);
 
-
     for(var key in jsonContent) {
-      let option = jsonContent[key].option;
-      let timer = jsonContent[key].timer;
-      const t = new website(option,timer);
-      t.emit('rcv');
+      var option = jsonContent[key].option;
+      var timer = jsonContent[key].timer;
+      var type = jsonContent[key].type;
+      const t = new website(option, timer,type);
+      t.fireRequest();
+      t.emit('tick');
     }
+
   } catch(error) {
     console.log(error);
     process.exit(1);
@@ -41,6 +48,6 @@ function buildParallel(pathToFile) {
 }
 
 module.exports = {
-  buildSequential,
+  buildWebsite,
   buildParallel
 };
