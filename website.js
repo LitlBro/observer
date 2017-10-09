@@ -28,6 +28,7 @@ const Website = class extends EventEmitter {
     // internal clock of the website object
     this.tick = 0;
     this.availability = 100;
+    this.threshold = 80;
 
     // allow the website class to act without external trigger
     this.on("tick", () => {
@@ -35,7 +36,6 @@ const Website = class extends EventEmitter {
         this.getContent()
           .then(() => {
             this.checkTimeFrame();
-            this.tick = 0;
             this.setTick();
         }).catch(err => {console.log(err)});
       } else {
@@ -173,6 +173,7 @@ const Website = class extends EventEmitter {
   */
   checkAvailability(data) {
     if(data.length > 0) {
+      var threshold = this.threshold;
       var downTime = 0;
       var upTime = 0;
       var date = data[0].date;
@@ -180,10 +181,10 @@ const Website = class extends EventEmitter {
           ("failure" == element.status) ? (++downTime): (++upTime);
       });
       var availability = Math.round((upTime/(upTime + downTime)) * 100);
-      if(this.availability < 80 && availability < 80 ) {
+      if(this.availability < threshold && availability < threshold ) {
         prompt.alert.log("\x1b[31m" + this.option.host + " availability below 80% for too long, at "+ date +"\x1b[37m");
       }
-      if(this.availability < 80 && availability >= 80) {
+      if(this.availability < threshold && availability >= threshold) {
         prompt.alert.log("\x1b[32m" + this.option.host + " availability is now above 80, at "+ date +"\x1b[37m");
       }
       this.availability = availability;
