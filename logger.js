@@ -10,7 +10,7 @@ screen = blessed.screen({
 // logger for regular data input and information
 // located in the upper level of the application console screen
 const logger = new blessed.log({
-  top:'0',
+  top: '0',
   width: '100%',
   height: '50%',
   border: 'line',
@@ -33,7 +33,7 @@ const logger = new blessed.log({
 // logger for irregular data input and alert
 // located in the lower level of the application console screen
 const alertLogger = new blessed.log({
-  bottom:'0',
+  bottom: '0',
   width: '100%',
   height: '50%',
   border: 'line',
@@ -65,6 +65,6 @@ screen.key('q', function() {
 screen.render();
 
 module.exports = {
-  'logger':logger,
-  'alert':alertLogger
+  'logger': logger,
+  'alert': alertLogger
 }

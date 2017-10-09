@@ -53,6 +53,7 @@ container size :
   * Time frame could be more flexible as a 10sec display could be irrelevant if data are updated every 2 minutes
 
 
+
 # about parallelizing :
 
   when using the workload.json scenario, response time tend to grow because of node.js being single-threaded.

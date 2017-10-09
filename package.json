@@ -1,6 +1,6 @@
 {
   "name": "observer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "a node.js application to monitor website",
   "dependencies": {
     "blessed": "^0.1.81",
