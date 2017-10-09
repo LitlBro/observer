@@ -3,6 +3,12 @@ node.js application to monitor basic metrics of website
 
 In order to monitor websites, define the needed properties (URL mandatory, other optional) as defined in example.json
 
+a "type" index can be added for http or https
+to execute use
+`$ node main.js test/example.json`
+
+to quit, press key "q"
+
 summary :
 * a website object is defined for each json entry
 * a container is bound to a website object to store metrics

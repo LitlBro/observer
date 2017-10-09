@@ -4,7 +4,6 @@
       "host":"google.com"
     },
     "type":"https",
-    "timer": 2,
-    "color":"blue"
+    "timer": 2
   }
 }

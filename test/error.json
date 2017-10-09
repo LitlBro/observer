@@ -4,7 +4,6 @@
       "host":"mothertestd.vice.com",
       "path":"/en_us/error"
     },
-    "color":"\\x1b[33m",
     "timer": 2
   },
   "1":{
@@ -12,16 +11,12 @@
       "host":"gykgjkhjkhbjgle.com",
       "path":"/"
     },
-    "color":"\\x1b[33m",
     "timer": 2
   },
-
-  "3":{
+  "2":{
     "option": {
-      "host":"facebook.com",
-      "path":"/"
+      "host":"gykgjkhjkhbjgle.com"
     },
-    "color":"\\x1b[33m",
-    "timer": 10
+    "timer": 2
   }
 }
