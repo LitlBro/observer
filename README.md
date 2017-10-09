@@ -31,18 +31,18 @@ container size :
 
   In jsonParser.js :
 
-    * could allow parallel processing using node swpan()
+  * could allow parallel processing using node swpan()
 
   In website.js :
 
-    * if metrics are to grow in number, the display function and the compute function should be build into a separate object
+  * if metrics are to grow in number, the display function and the compute function should be build into a separate object
 
-    * the check request could be specified (HEAD ?) to prevent getting too many information
-    (however the http HEAD method is not always implemented server-side)
+  * the check request could be specified (HEAD ?) to prevent getting too many information
+  (however the http HEAD method is not always implemented server-side)
 
-    * request error could be parsed to detect either network errors or improper URL to build different error treatment
+  * request error could be parsed to detect either network errors or improper URL to build different error treatment
 
-    * Time frame could be more flexible as a 10sec display could be irrelevant if data are updated every 2 minutes
+  * Time frame could be more flexible as a 10sec display could be irrelevant if data are updated every 2 minutes
 
 
 # about parallelizing :
