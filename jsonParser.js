@@ -1,4 +1,3 @@
-var clone = require('clone');
 var website = require('./website.js');
 var fs = require("fs");
 
@@ -18,7 +17,7 @@ function buildWebsite(pathToFile) {
       var option = jsonContent[key].option;
       var timer = jsonContent[key].timer;
       var type = jsonContent[key].type;
-      const t = new website(option, timer,type);      
+      const t = new website(option, timer,type);
       t.emit('tick');
     }
   } catch(error) {

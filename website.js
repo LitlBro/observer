@@ -2,7 +2,7 @@ const http = require('http');
 const https = require('https');
 const EventEmitter = require('events');
 const container = require("./container.js");
-
+const prompt = require('./logger.js')
 const Website = class extends EventEmitter {
   constructor(opt, timer = 2, type = 'http') {
     super();
@@ -12,28 +12,25 @@ const Website = class extends EventEmitter {
     this.getter = (type=='http') ? http : https;
     this.tick = 0;
     this.availability = 100;
-    this.warning = false;
+
     this.on("tick", () => {
-      console.log("tick : " +this.tick);
       if(this.tick%(60*this.clock) == 0) {
         this.getContent()
-        .then(() => {
-          this.checkTimeFrame();
-          this.tick = 0;
-          this.setTick();
-        });
-
+          .then(() => {
+            this.checkTimeFrame();
+            this.tick = 0;
+            this.setTick();
+        }).catch(err => {console.log(err)});
       } else {
         this.checkTimeFrame();
         this.setTick();
       }
-
     });
   }
 
   setTick() {
     this.tick = this.tick + 10;
-    setTimeout(()=>{this.emit('tick')},2*1000);
+    setTimeout(()=>{this.emit('tick')},1*1000);
   }
 
   addRes(res, start, delay,error=null) {
@@ -47,11 +44,10 @@ const Website = class extends EventEmitter {
   }
 
   checkTimeFrame() {
-    var tmp = this.tick;
-    if(tmp%120==0) {
+    if(this.tick%120==0) {
       this.checkAvailability(this.history.getAll());
     }
-    if(tmp%60==0) {
+    if(this.tick%60==0) {
       this.displayInfo(this.history.getAll());
     } else {
       this.displayInfo(this.history.getHistory(Math.round(10/this.clock)+1));
@@ -71,15 +67,16 @@ const Website = class extends EventEmitter {
         }).on('error', err => {
           var delay = new Date() - start;
           this.addRes(null, start, delay,err);
-          console.log("ERROR : host ( "+ this.option.host +" ) cannot be reached");
-          resolve();
+          prompt.logger.log("ERROR : host ( "+ this.option.host +" ) cannot be reached");
+          resolve(); //error are expected due to network or website failure
         }).end();
       });
    }
 
   displayInfo(data) {
-    if(Object.keys(data).length > 0) {
-      var st = "Metrics for host : " + this.option.host;
+    var l = Object.keys(data).length;
+    if(l > 0) {
+      var st = "last "+ l +" metrics for host : " + this.option.host;
 
       var res = this.responseTime(data);
       var status = this.responseStatus(data);
@@ -89,7 +86,7 @@ const Website = class extends EventEmitter {
       st = st + "\n status code count = " + JSON.stringify(status);
       st = st + "\n website availability = " + vbt
       st = st + "\n";
-      console.log(st);
+      prompt.logger.log(st);
     }
   }
 
@@ -136,13 +133,11 @@ const Website = class extends EventEmitter {
           ("failure" == element.status) ? (++downTime): (++upTime);
       });
       var availability = Math.round((upTime/(upTime + downTime)) * 100);
-      if(this.availability < 80 && availability < 80 && !this.warning ) {
-        this.warning = true;
-        console.log("\x1b[31m" + this.option.host + " availability is below 80% for too long, at "+ date +"\x1b[37m");
+      if(this.availability < 80 && availability < 80 ) {
+        prompt.alert.log("\x1b[31m" + this.option.host + " availability below 80% for too long, at "+ date +"\x1b[37m");
       }
       if(this.availability < 80 && availability >= 80) {
-        this.warning = false;
-        console.log("\x1b[32m " + this.option.host + "  availability is now above 80, at "+ date +"\x1b[37m");
+        prompt.alert.log("\x1b[32m" + this.option.host + " availability is now above 80, at "+ date +"\x1b[37m");
       }
       this.availability = availability;
     }
