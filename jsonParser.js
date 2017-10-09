@@ -30,4 +30,6 @@ function buildWebsite(pathToFile) {
   }
 }
 
-module.exports = buildWebsite
+module.exports = {
+  buildWebsite
+}
