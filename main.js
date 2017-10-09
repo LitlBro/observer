@@ -1,3 +1,4 @@
+// main entry point of the program
 var stream = require('./jsonParser.js');
 
 try {

@@ -1,11 +1,14 @@
 const blessed = require('blessed')
 
+//Create a blessed screen templates
 screen = blessed.screen({
   smartCSR: true,
   autoPadding: true,
   warnings: true
 });
 
+// logger for regular data input and information
+// located in the upper level of the application console screen
 const logger = new blessed.log({
   top:'0',
   width: '100%',
@@ -26,6 +29,9 @@ const logger = new blessed.log({
     }
   }
 });
+
+// logger for irregular data input and alert
+// located in the lower level of the application console screen
 const alertLogger = new blessed.log({
   bottom:'0',
   width: '100%',
@@ -49,17 +55,10 @@ const alertLogger = new blessed.log({
 
 screen.append(logger);
 screen.append(alertLogger);
-/*
-setInterval(function() {
-    logger.log('test');
-    alertLogger.log({foo:{bar:{baz:true}}});
 
-  screen.render();
-}, 100).unref();
-*/
 screen.key('q', function() {
   screen.destroy();
-  console.log("quitting application");
+  console.log("q key pressed, \n" + "quitting application...");
   process.exit(1);
 });
 

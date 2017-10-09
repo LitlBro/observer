@@ -2,7 +2,7 @@
 * Is going to contain the data for an observer
 * Is circular to create 0(1) insert (no deletion but overwrite)
 **/
-class CircularBuffer  {
+class Container  {
 	constructor(size) {
 		this.size = size;
     this.pool = [];
@@ -23,6 +23,7 @@ class CircularBuffer  {
     this.grow();
   }
 
+	// return the current size of data, maximum is this.size
   getSize() {
     if(typeof this.pool[this.size-1] === 'undefined') {
       return this.index;
@@ -62,4 +63,4 @@ class CircularBuffer  {
 }
 
 
-module.exports = CircularBuffer;
+module.exports = Container;
