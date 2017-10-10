@@ -5,5 +5,12 @@
     },
     "type":"https",
     "timer": 2
+  },
+  "1":{
+    "option": {
+      "host":"facebook.com"
+    },
+    "type":"http",
+    "timer": 2
   }
 }
