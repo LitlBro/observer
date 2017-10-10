@@ -90,5 +90,189 @@
       "path":"/"
     },
     "timer": 2
+  },
+  "1a":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "2a":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 5
+  },
+
+  "3a":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "4a":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "a5":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "6a":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "7a":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "a8":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "a9":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "a10":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "1a1":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 5
+  },
+  "1a2":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "1a3":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 2
+  },
+  "1f":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "2f":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 5
+  },
+
+  "3f":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "4f":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "5f":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "f6":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "f7":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "8f":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "9f":{
+    "option": {
+      "host":"facebook.com",
+      "path":"/"
+    },
+    "timer": 7
+  },
+  "1f0":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "1f1":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 5
+  },
+  "1f2":{
+    "option": {
+      "host":"motherboard.vice.com",
+      "path":"/en_us/error"
+    },
+    "timer": 3
+  },
+  "1f3":{
+    "option": {
+      "host":"google.com",
+      "path":"/"
+    },
+    "timer": 2
   }
 }
