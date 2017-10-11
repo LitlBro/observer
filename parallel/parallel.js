@@ -43,7 +43,7 @@ const container = require("../container.js");
     tick = tick + 10;
     setTimeout(() => {
       ticker.emit('tick')
-    }, 1 * 1000);
+    }, 10 * 1000);
   }
 
   /*

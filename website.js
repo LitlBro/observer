@@ -54,7 +54,7 @@ const Website = class extends EventEmitter {
     this.tick = this.tick + 10;
     setTimeout(() => {
       this.emit('tick')
-    }, 1 * 1000);
+    }, 10 * 1000);
   }
 
   /*
