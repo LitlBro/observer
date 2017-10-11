@@ -58,4 +58,4 @@ container size :
 
   when using the workload.json scenario, response time tend to grow because of node.js being single-threaded. the new Date() occurs way after the request has been completed. An other method could be used, however, the elaspedTime property has been deprecated
 
-the branch parallel feature a basic solution. run the file named p.js with $ node p.js ../test/workload.json and see the difference in request time when using the same json file with main.js
+the branch parallel feature a basic solution. run the file named p.js with `$ node p.js ../test/workload.json` and see the difference in request time when using the same json file with main.js
